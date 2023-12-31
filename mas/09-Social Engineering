@@ -1,0 +1,28 @@
+09-Social Engineering
+
+    Perform social engineering using various techniques
+        Sniff Credentials using the Social-Engineer Toolkit (SET)
+            Using SET
+            1Social-Engineering Attacks
+                2Website Attack Vectors.
+                    3Credential Harvester Attack Method.
+                    Clonar website ahi directo
+
+    Detect a phishing attack
+        Detect phishing using Netcraft
+            using browser extention to detect phising and reporting confiabilidad del sitio
+        Detect phishing using PhishTank
+            PAgina para buscar pag y reportarlas
+
+    Audit organization's security for phishing attacks
+        Audit organization's security for phishing attacks using OhPhish
+            To be truly effective in combating social engineering attacks, an organization should do the following:
+
+            Disseminate policies among its employees and provide proper education and training.
+            Provide specialized training benefits to employees who are at a high risk of social engineering attacks.
+            Obtain signatures of employees on a statement acknowledging that they understand the policies.
+            Define the consequences of policy violations.
+
+            EXCELENTE HERRAMIENTA PARA HACER UNA CAMPANA DE PHISHING, CON REPORTE,CREACION Y TODO
+            fake email
+            https://emkei.cz/

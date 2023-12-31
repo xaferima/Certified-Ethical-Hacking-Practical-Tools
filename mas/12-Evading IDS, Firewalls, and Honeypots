@@ -1,0 +1,32 @@
+12-Evading IDS, Firewalls, and Honeypots 
+Main Functions of IDS:
+
+Gathers and analyzes information from within a computer or a network, to identify the possible violations of security policy
+Also referred to as a “packet-sniffer,” which intercepts packets traveling along various communication mediums and protocols
+Evaluates traffic for suspected intrusions and signals an alarm after detection
+
+    Perform intrusion detection using various tools
+        Detect intrusions using Snort
+            Now type snort -W. This command lists your machine’s physical address, IP address, and Ethernet Drivers, but all are disabled by default.
+            To enable the Ethernet Driver, in the command prompt, type snort -dev -i 1 and press Enter
+            In Step #6, add to line (534) output alert_fast: alerts.ids: this command orders Snort to dump all logs into the alerts.ids file.
+            By default, the string is ipvar, which is not recognized by Snort: replace with the var string, and then close the window.
+            Snort now supports multiple conﬁgurations based on VLAN Id or IP subnet within a single instance of Snort. This allows administrators to specify multiple snort conﬁguration ﬁles and bind each conﬁguration to one or more VLANs or subnets rather than running one Snort for each conﬁguration required.
+
+            alert icmp $EXTERNAL_NET any -> $HOME_NET 10.10.10.19 (msg:"ICMP-INFO PING"; icode:0; itype:8; reference:arachnids,135; reference:cve,1999-0265; classtype:bad-unknown; sid:472; rev:7;) and save. Close the Notepad++ window.
+            snort -iX -A console -c C:\Snort\etc\snort.conf -l C:\Snort\log -K ascii and press Enter to start Snort (replace X with your device index number; in this lab: X is 1). 
+        Detect malicious network traffic using ZoneAlarm FREE FIREWALL 2019
+            In the Application Control Mode wizard, ensure that the Set Application Control to AUTO-LEARN mode option is selected, and click Next >.
+
+            By choosing this mode, Zone Alarm Firewall configures the security settings based on behavior and automates this process for your network.
+            Using this tool for bloking sites
+        Detect malicious network traffic using HoneyBOT
+            Using this tool as an example
+
+    Evade firewalls using various evasion techniques
+        Bypass windows firewall using Nmap evasion techniques
+            You can perform a Zombie scan by choosing any of the IPs that are obtained in the ping sweep scan. In this lab, we are choosing Windows Server 2019 as the Zombie.
+            ONLY USING A ZOMBIE SCAN TO BYPASS
+            nmap -sI 10.10.10.19 10.10.10.10
+        Bypass firewall rules using HTTP/FTP tunneling
+            Using tools in host and remote for tunneling

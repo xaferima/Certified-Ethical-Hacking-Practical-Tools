@@ -1,0 +1,30 @@
+19-Cloud Computing
+Overview of S3 Buckets
+
+S3 buckets are used by customers and end users to store text documents, PDFs, videos, images, etc. To store all these data, the user needs to create a bucket with a unique name.
+
+Listed below are several techniques that can be adopted to identify AWS S3 Buckets:
+
+ Inspecting HTML: Analyze the source code of HTML web pages in the background to find URLs to the target S3 buck
+ Brute-Forcing URL: Use Burp Suite to perform a brute-force attack on the target bucket’s URL to identify its cort 
+ Finding subdomains: Use tools such as Findsubdomains and Robtex to identify subdomains related to the target buc
+ Reverse IP Search: Use search engines such as Bing to perform reverse IP search to identify the domains of the target buckets
+ Advanced Google hacking: Use advanced Google search operators such as “inurl” to search for URLs related to the target buckets
+
+    Perform S3 bucket enumeration using various S3 bucket enumeration tools
+        Enumerate S3 buckets using lazys3
+            ruby lazys3.rb [Company] 
+        Enumerate S3 buckets using S3Scanner
+            python3 ./s3scanner.py sites.txt 
+
+             You can also use other S3 bucket enumeration tools such as S3Inspector (https://github.com), s3-buckets-bruteforcer (https://github.com), Mass3 (https://github.com), Bucket Finder (https://digi.ninja), and s3recon (https://github.com) to perform S3 bucket enumeration for a target website or company.
+
+    Exploit S3 buckets
+        Exploit open S3 buckets using AWS CLI
+            Thus, you can add or delete files from open S3 buckets.
+
+    Perform privilege escalation to gain higher privileges
+        Escalate IAM user privileges by exploiting misconfigured user policy
+
+            A policy is an entity that, when attached to an identity or resource, defines its permissions.
+            
