@@ -112,6 +112,7 @@ Command injection Windows
 
 
 samba 445
+	smbclient -L \\\\IP\\
 	smbclient //192.168.0.X/name -U USER%password
 	smbclient \\\\blog.thm\\anonymous   ******
 	smbclient -U 'user' \\\\<ip>\\Administrator 
