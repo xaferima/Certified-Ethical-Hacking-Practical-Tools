@@ -52,8 +52,8 @@ Web server
 			nikto -h 10.10.10.1 -Plugin apacheuser
 		-Tuning(File Upload, Misconfigurations / Default Files, Information Disclosure, Injection, Command Execution, SQL Injection)
 	Skipfish 
-		skipfish -o /home/directory -S /usr/share/skipfish/dictionaries/complete.wl http://xaferima.com
-		sudo skipfish -o test2 http://xaferima.com
+		skipfish -o /home/directory -S /usr/share/skipfish/dictionaries/complete.wl http://example.com
+		sudo skipfish -o test2 http://example.com
 
 	nmap -sV --script=http-enum site.com  (page 1245)
 	uniscan -u url -q(directories) -we(map, robots,siemap) -d(dynamic:emails,sourcecode,etc)
@@ -62,7 +62,7 @@ Web server
 WPSCAN
 	wpscan --url http://refal-edu.org/ --enumerate u (For users)
 		--enumerate vp (Vulns Plugins)
-	wpscan --url http://refal-edu.org/ --passwords /home/xaferima/Documents/payloads/rockyou.txt --usernames xaferima
+	wpscan --url http://refal-edu.org/ --passwords /home/example/Documents/payloads/rockyou.txt --usernames example
 		--plugins-detection aggressive
 	mesfconsole auxiliary/scanner/http/wordpress_login_enum
 
