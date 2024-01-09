@@ -1,0 +1,40 @@
+08-Sniffing
+
+    Perform active sniffing
+        Perform MAC flooding using macof
+            macof -i eth0 -n 10 and press Enter.
+                -i: specifies the interface and -n: specifies the number of packets to be sent (here, 10
+        Perform a DHCP starvation attack using Yersinia
+            yersinia -I(Starts an interactive ncurses session.)
+            F2 to select DHCP mode
+            x to list available attack options.
+            The Attack Panel window appears; press 1 to start a DHCP starvation attack.
+        Perform ARP poisoning using arpspoof
+            arpspoof -i eth0 -t 10.10.10.1 10.10.10.1
+                -i: specifies network interface and -t: specifies target IP address.
+        Perform an Man-in-the-Middle (MITM) attack using Cain & Abel
+            using to get PASSWRODS with arppoisoning, really nice
+        Spoof a MAC address using TMAC and SMAC
+            using a tool to change macs
+
+    Perform network sniffing using various sniffing tools
+        Perform password sniffing using Wireshark
+            sniffing de red por wireshark
+            filtros para buscar contraseñas
+            http.request.method == POST
+        Analyze a network using the Omnipeek Network Protocol Analyzer
+            free trial
+            analizador de red.stats ,etc
+        Analyze a network using the SteelCentral Packet Analyzer
+            free trial
+            analizador de red.stats ,etc
+            Arp, protocolos, ports, reportes, etc
+
+    Detect network sniffing
+        Detect ARP poisoning in a switch-based network
+            Utilizando wireshark para encontrar duplicados
+        Detect ARP attacks using XArp
+            detecta automaticamente, muy facil
+        Detect promiscuous mode using Nmap and NetScanTools Pro
+            nmap --script sniffer-detect(Modo promiscuo detectará) resultado:1111111111111
+            Netscantoools Pro, detecta en una opcion ¨manual tools-> promiscous scanner¨

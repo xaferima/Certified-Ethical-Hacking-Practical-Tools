@@ -1,0 +1,35 @@
+18-IoT and OT Hacking
+
+Overview of IoT and OT Hacking
+
+Using the IoT and OT hacking methodology, an attacker acquires information using techniques such as information gathering, attack surface area identification, and vulnerability scanning, and uses such information to hack the target device and network.
+
+The following are the various phases of IoT and OT device hacking:
+
+  Information gathering
+  Vulnerability scanning
+  Launch attacks
+  Gain remote access
+  Maintain access
+
+
+    Perform footprinting using various footprinting techniques
+        Gather information using online footprinting tools
+            https://www.exploit-db.com/google-hacking-database
+            Google Hacking Database page appears; type SCADA in the Quick Search field and press Enter.
+            "login" intitle:"scada login"
+            intitle:"index of" scada
+
+            In shodan:
+            port:1883
+
+            Search for Modbus-enabled ICS/SCADA systems:
+            port:502
+            Search for SCADA systems using PLC name:
+            “Schneider Electric”
+            Search for SCADA systems using geolocation:
+            SCADA Country:"US"
+
+    Capture and analyze IoT device traffic
+        Capture and analyze IoT traffic using Wireshark
+            display filter field, type mqtt 

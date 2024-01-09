@@ -1,0 +1,43 @@
+20-Cryptography
+
+Encrypt the information using various cryptography tools
+
+    Calculate one-way hashes using HashCalc
+    	Using for hashing
+    Calculate MD5 hashes using MD5 Calculator
+    	Using for hashing
+    Calculate MD5 hashes using HashMyFiles
+    	Using for hashing
+    Perform file and text message encryption using CryptoForge
+    	CryptoForge is a file encryption software for personal and professional data security.
+    	Encripta y desencripta asi de emocionante
+    Encrypt and decrypt data using BCTextEncoder
+    	BCTextEncoder simplifies encoding and decoding text data.
+
+Create a self-signed certificate
+
+    Create and use self-signed certificates
+    	Se crea un certificado desde ISS y ya
+
+Perform email encryption
+
+    Perform email encryption using RMail
+    	RMail is an email security tool that provides open tracking, proof of delivery, email encryption, electronic signatures, large file transfer functionality, etc.
+
+Perform disk encryption
+
+    Perform disk encryption using VeraCrypt
+    	Using for encryption
+    Perform disk encryption using BitLocker Drive Encryption
+    	Windoiws default
+    	Using for encryption
+    Perform disk encryption using Rohos Disk Encryption
+    	Using for encryption and hide disk
+
+Perform cryptanalysis using various cryptanalysis tools
+
+    Perform cryptanalysis using CrypTool
+    	Using for encryption
+
+    Perform cryptanalysis using AlphaPeeler
+    	Using for encryption DES

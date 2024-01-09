@@ -1,0 +1,38 @@
+13-Hacking Web Servers
+
+    Footprint the web server
+
+        Information gathering using Ghost Eye
+            Whois Lookup. Type 1
+            Clickjacking Test. Type 6
+
+        Perform web server reconnaissance using Skipfish
+            skipfish -o /root/test -S /usr/share/skipfish/dictionaries/complete.wl http://[IP Address of Windows Server 2016]:8080 
+
+        Footprint a web server using the httprecon Tool
+            By obtaining this information, attackers can manipulate HTTP vulnerabilities in order to perform malicious activities such as sniffing over the HTTP channel, which might result in revealing sensitive data such as user credentials.
+
+        Footprint a web server using ID Serve
+            No util, solo para reconocer el server
+        Footprint a web server using Netcat and Telnet
+            no util, se usa telnet para buscar lo q se puede hacer de manera automatica en otras tools
+        Enumerate web server information using Nmap Scripting Engine (NSE)
+            -nmap -sV --script=http-enum [target website] 
+            This script enumerates and provides you with the output details
+            -The next step is to discover the hostnames that resolve the targeted domain.
+            In the terminal window, type nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com
+            -Perform an HTTP trace on the targeted domain. In the terminal window, type nmap --script http-trace -d www.goodshopping.com
+            This script will detect a vulnerable server that uses the TRACE method by sending an HTTP TRACE request that shows if the method is enabled or not.
+            Web Application Firewall is configured on the target host or domain. In the terminal window, type nmap -p80 --script http-waf-detect www.goodshopping.com
+
+        Uniscan web server fingerprinting in Parrot Security
+            uniscan -u http://10.10.10.16:8080/CEH -q 
+            SIMILAR TO GODISTURB, FFUF, ETC gobuster
+            Here -w and -e are used together to enable the file check (robots.txt and sitemap.xml file). In the terminal window, type uniscan -u http://10.10.10.16:8080/CEH -we
+            Type uniscan -u http://10.10.10.16:8080/CEH -d and hit Enter to start a dynamic 
+            Obtaining more information about email-IDs, Source code disclosures, and external hosts.
+
+    Perform a web server attack
+        Crack FTP credentials using a Dictionary Attack
+        Using hydra
+        hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://[IP Address of Windows 10] 
